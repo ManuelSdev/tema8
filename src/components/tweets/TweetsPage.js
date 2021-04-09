@@ -1,7 +1,9 @@
 import React from "react";
 import { getLatestTweets } from "../../api/tweets";
+import classnames from "classnames";
+import scopedStyles from "./TweetsPage.module.css";
 
-const TweetsPage = () => {
+const TweetsPage = ({ className }) => {
   //AHora en lugar de acceder a tuits fijos accedemos
   //a través de un estado .El estado lo iniciamos con
   //un array vacío para que tenga "algo" mientras
@@ -13,7 +15,7 @@ const TweetsPage = () => {
   }, []);
 
   return (
-    <div className="tweetsPage">
+    <div className={classnames(scopedStyles.tweetsPage, className)}>
       <ul>
         {tweets.map((tweet) => (
           <li key={tweet.id}>{tweet.content}</li>
