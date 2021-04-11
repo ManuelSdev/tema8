@@ -5,7 +5,6 @@ import Button from "./components/shared/Button";
 function App() {
   return (
     <div className="App">
-      <Button variant="primary" />
       <TweetsPage />
     </div>
   );
