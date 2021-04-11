@@ -1,11 +1,15 @@
-import logo from "./logo.svg";
-import "./App.css";
-import TweetsPage from "./components/tweets/TweetsPage.js";
-import Button from "./components/shared/Button";
+import './App.css';
+
+import { LoginPage } from './components/auth';
+import { TweetsPage, NewTweetPage, TweetDetailPage } from './components/tweets';
+
 function App() {
   return (
     <div className="App">
-      <TweetsPage />
+      <LoginPage />
+      {/* <TweetsPage />
+      <NewTweetPage />
+      <TweetDetailPage /> */}
     </div>
   );
 }
