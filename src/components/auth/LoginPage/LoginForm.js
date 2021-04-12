@@ -22,11 +22,18 @@ function LoginForm() {
   //   };
 
   const handleChange = event => {
-    const newCredentials = {
-      ...credentials,
-      [event.target.name]: event.target.value,
-    };
-    setCredentials(newCredentials);
+    // const newCredentials = {
+    //   ...credentials,
+    //   [event.target.name]: event.target.value,
+    // };
+    // setCredentials(newCredentials)
+    setCredentials(oldCredentials => {
+      const newCredentials = {
+        ...oldCredentials,
+        [event.target.name]: event.target.value,
+      };
+      return newCredentials;
+    });
   };
 
   return (
