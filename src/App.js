@@ -1,12 +1,17 @@
+import React from 'react';
 import './App.css';
 
 import { LoginPage } from './components/auth';
 import { TweetsPage, NewTweetPage, TweetDetailPage } from './components/tweets';
 
 function App() {
+  const [isLogged, setIsLogged] = React.useState(false);
+
+  const handleLogin = () => setIsLogged(true);
+
   return (
     <div className="App">
-      <LoginPage />
+      {isLogged ? <TweetsPage /> : <LoginPage onLogin={handleLogin} />}
       {/* <TweetsPage />
       <NewTweetPage />
       <TweetDetailPage /> */}

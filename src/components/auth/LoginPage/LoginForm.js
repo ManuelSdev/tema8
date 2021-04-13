@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 
 import Button from '../../shared/Button';
@@ -5,7 +6,7 @@ import FormField from '../../shared/FormField';
 
 import './LoginForm.css';
 
-function LoginForm() {
+function LoginForm({ onSubmit }) {
   const [credentials, setCredentials] = React.useState({
     username: '',
     password: '',
@@ -22,21 +23,39 @@ function LoginForm() {
   //   };
 
   const handleChange = event => {
-    const newCredentials = {
-      ...credentials,
-      [event.target.name]: event.target.value,
-    };
-    setCredentials(newCredentials);
+    // const newCredentials = {
+    //   ...credentials,
+    //   [event.target.name]: event.target.value,
+    // };
+    // setCredentials(newCredentials)
+    setCredentials(oldCredentials => {
+      const newCredentials = {
+        ...oldCredentials,
+        [event.target.name]: event.target.value,
+      };
+      return newCredentials;
+    });
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    onSubmit(credentials);
+  };
+
+  //   const validatePassword = () => {
+  //     return /abcd/.test(credentials.password);
+  //   };
+
+  const { username, password } = credentials;
+
   return (
-    <form className="loginForm">
+    <form className="loginForm" onSubmit={handleSubmit}>
       <FormField
         type="text"
         name="username"
         label="phone, email or username"
         className="loginForm-field"
-        value={credentials.username}
+        value={username}
         // onChange={handleUsernameChange}
         onChange={handleChange}
       />
@@ -45,11 +64,16 @@ function LoginForm() {
         name="password"
         label="password"
         className="loginForm-field"
-        value={credentials.password}
+        value={password}
         // onChange={handlePasswordChange}
         onChange={handleChange}
       />
-      <Button type="submit" className="loginForm-submit" variant="primary">
+      <Button
+        type="submit"
+        className="loginForm-submit"
+        variant="primary"
+        disabled={!username || !password}
+      >
         Log in
       </Button>
     </form>
