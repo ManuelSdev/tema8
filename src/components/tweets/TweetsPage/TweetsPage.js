@@ -5,7 +5,7 @@ import './TweetsPage.css';
 import scopedStyles from './TweetsPage.module.css';
 import Layout from '../../layout/Layout';
 
-const TweetsPage = ({ className }) => {
+const TweetsPage = ({ className, ...props }) => {
   const [tweets, setTweets] = React.useState([]);
 
   React.useEffect(() => {
@@ -25,7 +25,7 @@ const TweetsPage = ({ className }) => {
   const styles = { color: tweets.length > 2 ? 'red' : 'green' };
 
   return (
-    <Layout title="What's going on...">
+    <Layout {...props} title="What's going on...">
       <div className={classnames(scopedStyles.tweetsPage, className)}>
         <ul style={styles}>{items}</ul>
       </div>

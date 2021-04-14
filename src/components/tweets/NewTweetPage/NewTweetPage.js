@@ -2,9 +2,9 @@ import React from 'react';
 import './NewTweetPage.css';
 import Layout from '../../layout/Layout';
 
-const NewTweetPage = () => {
+const NewTweetPage = (...props) => {
   return (
-    <Layout title="What are you thinking?">
+    <Layout {...props} title="What are you thinking?">
       <div>NewTweetPage</div>
     </Layout>
   );

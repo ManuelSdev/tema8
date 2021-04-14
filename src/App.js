@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      {isLogged ? <TweetsPage /> : <LoginPage onLogin={handleLogin} />}
+      {isLogged ? <TweetsPage isLogged={isLogged} /> : <LoginPage onLogin={handleLogin} />}
       {/* <TweetsPage />
       <NewTweetPage />
       <TweetDetailPage /> */}
