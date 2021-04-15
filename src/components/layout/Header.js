@@ -22,18 +22,22 @@ const Header = ({ className, isLogged, ...props }) => {
         >
           Tweet
         </Button>
-        {isLogged ?
+        {isLogged ? (
           <Button
             className="header-button"
-
+            // onClick={() => logout().then(onLogout)}
           >
             Log out
           </Button>
-          :
-          <Button className="header-button">
+        ) : (
+          <Button
+            // as={Link}
+            to="/login"
+            className="header-button"
+          >
             Login
           </Button>
-        }
+        )}
       </nav>
     </header>
   );

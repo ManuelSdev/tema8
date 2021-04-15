@@ -25,7 +25,7 @@ const TweetsPage = ({ className, ...props }) => {
   const styles = { color: tweets.length > 2 ? 'red' : 'green' };
 
   return (
-    <Layout {...props} title="What's going on...">
+    <Layout title="What's going on..." {...props}>
       <div className={classnames(scopedStyles.tweetsPage, className)}>
         <ul style={styles}>{items}</ul>
       </div>
