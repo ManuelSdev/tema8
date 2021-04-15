@@ -1,10 +1,10 @@
 import React from 'react';
-
+import T from 'prop-types';
 import { LoginPage } from './components/auth';
 import { TweetsPage, NewTweetPage, TweetDetailPage } from './components/tweets';
 
-function App() {
-  const [isLogged, setIsLogged] = React.useState(false);
+function App({ isInitiallyLogged }) {
+  const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
 
   const handleLogin = () => setIsLogged(true);
 
@@ -23,5 +23,9 @@ function App() {
     </div>
   );
 }
+
+App.propTypes = {
+  isInitiallyLogged: T.bool.isRequired,
+};
 
 export default App;
