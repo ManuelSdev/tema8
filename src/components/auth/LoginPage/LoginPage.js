@@ -27,7 +27,7 @@ function LoginPage({ onLogin }) {
   return (
     <div className="loginPage">
       <h1 className="loginPage-title">Log in to Twitter</h1>
-      <LoginForm onSubmit={handleSubmit} isLoading={isLoading} />
+      <LoginForm onSubmit={handleSubmit} />
       {error && (
         <div onClick={resetError} className="loginPage-error">
           {error.message}

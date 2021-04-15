@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import React from 'react';
+import classNames from 'classnames';
+import T from 'prop-types';
 
 import Button from '../../shared/Button';
 import FormField from '../../shared/FormField';
@@ -79,5 +80,14 @@ function LoginForm({ onSubmit, isLoading }) {
     </form>
   );
 }
+
+LoginForm.propTypes = {
+  onSubmit: T.func.isRequired,
+  isLoading: T.bool,
+};
+
+LoginForm.defaultProps = {
+  isLoading: false,
+};
 
 export default LoginForm;
