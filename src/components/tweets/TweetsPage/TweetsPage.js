@@ -1,9 +1,24 @@
 import React from 'react';
-import { getLatestTweets } from '../../../api/tweets';
 import classnames from 'classnames';
-import './TweetsPage.css';
+import { getLatestTweets } from '../../../api/tweets';
 import scopedStyles from './TweetsPage.module.css';
 import Layout from '../../layout/Layout';
+import TweetsList from './TweetsList';
+import { Button } from '../../shared';
+import './TweetsPage.css';
+
+const EmptyList = () => (
+  <div style={{ textAlign: 'center' }}>
+    <p>Be the first twitter!</p>
+    <Button
+      // as={Link}
+      // to="/tweet"
+      variant="primary"
+    >
+      Tweet
+    </Button>
+  </div>
+);
 
 const TweetsPage = ({ className, ...props }) => {
   const [tweets, setTweets] = React.useState([]);
@@ -12,22 +27,10 @@ const TweetsPage = ({ className, ...props }) => {
     getLatestTweets().then(setTweets);
   }, []);
 
-  const handleClick = () => {
-    alert('Construyendo un enlace al detalle...');
-  };
-
-  const items = tweets.map(tweet => (
-    <li onClick={handleClick} key={tweet.id}>
-      {tweet.content}
-    </li>
-  ));
-
-  const styles = { color: tweets.length > 2 ? 'red' : 'green' };
-
   return (
     <Layout title="What's going on..." {...props}>
       <div className={classnames(scopedStyles.tweetsPage, className)}>
-        <ul style={styles}>{items}</ul>
+        {tweets.length ? <TweetsList tweets={tweets} /> : <EmptyList />}
       </div>
     </Layout>
   );

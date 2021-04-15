@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import { LoginPage } from './components/auth';
 import { TweetsPage, NewTweetPage, TweetDetailPage } from './components/tweets';
@@ -14,7 +13,7 @@ function App() {
   return (
     <div className="App">
       {isLogged ? (
-        <TweetsPage isLogged={isLogged} />
+        <TweetsPage isLogged={isLogged} onLogout={handleLogout} />
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}

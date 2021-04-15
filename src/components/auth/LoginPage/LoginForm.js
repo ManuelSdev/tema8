@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import T from 'prop-types';
 
 import Button from '../../shared/Button';

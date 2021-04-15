@@ -12,9 +12,9 @@ function LoginPage({ onLogin }) {
 
   const handleSubmit = async credentials => {
     // login(credentials).then(() => onLogin());
+    resetError();
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      setError(null);
       await login(credentials);
       onLogin();
     } catch (error) {
@@ -27,7 +27,7 @@ function LoginPage({ onLogin }) {
   return (
     <div className="loginPage">
       <h1 className="loginPage-title">Log in to Twitter</h1>
-      <LoginForm onSubmit={handleSubmit} />
+      <LoginForm isLoading={isLoading} onSubmit={handleSubmit} />
       {error && (
         <div onClick={resetError} className="loginPage-error">
           {error.message}
