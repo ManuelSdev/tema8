@@ -12,6 +12,9 @@ function App({ isInitiallyLogged }) {
 
   return (
     <div className="App">
+      <Switch>
+        <Route path="/tweet" component={NewTweetPage}></Route>
+      </Switch>
       {isLogged ? (
         <TweetsPage isLogged={isLogged} onLogout={handleLogout} />
       ) : (
