@@ -1,8 +1,8 @@
 import React from 'react';
 import T from 'prop-types';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { LoginPage } from './components/auth';
 import { TweetsPage, NewTweetPage, TweetDetailPage } from './components/tweets';
-import { Switch, Route, Redirect } from 'react-router';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
@@ -19,9 +19,9 @@ function App({ isInitiallyLogged }) {
         <Route path="/tweet/:tweetId" component={TweetDetailPage} />
         <Route path="/tweet" component={NewTweetPage} />
         <Route path="/login">
-          {() =>
-            isLogged ? <Redirect to="/" /> : <LoginPage onLogin={handleLogin} />
-          }
+          {({ history }) => (
+            <LoginPage onLogin={handleLogin} history={history} />
+          )}
         </Route>
         <Route exact path="/">
           <TweetsPage isLogged={isLogged} onLogout={handleLogout} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ReactComponent as Icon } from '../../assets/twitter.svg';
 import Button from '../shared/Button';
 import AuthButton from '../auth/AuthButton';
@@ -16,7 +16,9 @@ const Header = ({ className, isLogged, onLogout, ...props }) => {
       </Link>
       <nav className="header-nav">
         <Button
-          as={Link}
+          as={NavLink}
+          activeClassName="active"
+          // activeStyleObject={{}}
           to="/tweet"
           variant="primary"
           className="header-button"
