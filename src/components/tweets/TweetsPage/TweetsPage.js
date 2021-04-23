@@ -20,7 +20,7 @@ const EmptyList = () => (
   </div>
 );
 
-const TweetsPage = ({ className, ...props }) => {
+const TweetsPage = ({ className, history, ...props }) => {
   const [tweets, setTweets] = React.useState([]);
 
   React.useEffect(() => {
@@ -30,7 +30,11 @@ const TweetsPage = ({ className, ...props }) => {
   return (
     <Layout title="What's going on..." {...props}>
       <div className={classnames(scopedStyles.tweetsPage, className)}>
-        {tweets.length ? <TweetsList tweets={tweets} /> : <EmptyList />}
+        {tweets.length ? (
+          <TweetsList tweets={tweets} history={history} />
+        ) : (
+          <EmptyList />
+        )}
       </div>
     </Layout>
   );

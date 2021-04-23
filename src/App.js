@@ -28,7 +28,13 @@ function App({ isInitiallyLogged }) {
           )}
         </Route>
         <Route exact path="/">
-          <TweetsPage isLogged={isLogged} onLogout={handleLogout} />
+          {({ history }) => (
+            <TweetsPage
+              isLogged={isLogged}
+              onLogout={handleLogout}
+              history={history}
+            />
+          )}
         </Route>
         <Route path="/404">
           <div
