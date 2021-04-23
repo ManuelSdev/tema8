@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { LoginPage } from './components/auth';
+import { LoginPage, PrivateRoute } from './components/auth';
 import { TweetsPage, NewTweetPage, TweetDetailPage } from './components/tweets';
 
 function App({ isInitiallyLogged }) {
@@ -17,7 +17,11 @@ function App({ isInitiallyLogged }) {
     <div className="App">
       <Switch>
         <Route path="/tweet/:tweetId" component={TweetDetailPage} />
-        <Route path="/tweet" component={NewTweetPage} />
+        <PrivateRoute
+          isLogged={isLogged}
+          path="/tweet"
+          component={NewTweetPage}
+        />
         <Route path="/login">
           {({ history }) => (
             <LoginPage onLogin={handleLogin} history={history} />
