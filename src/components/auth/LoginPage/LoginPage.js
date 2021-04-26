@@ -1,8 +1,10 @@
 import React from 'react';
+import T from 'prop-types';
 import LoginForm from './LoginForm';
 import { login } from '../../../api/auth';
 
 import './LoginPage.css';
+import { AuthContextConsumer } from '../context';
 
 function LoginPage({ onLogin, history, location }) {
   const [error, setError] = React.useState(null);
@@ -48,4 +50,18 @@ function LoginPage({ onLogin, history, location }) {
   );
 }
 
-export default LoginPage;
+LoginPage.propTypes = {
+  onLogin: T.func.isRequired,
+  history: T.shape({ replace: T.func.isRequired }).isRequired,
+  location: T.object.isRequired,
+};
+
+const ConnectedLoginPage = props => {
+  return (
+    <AuthContextConsumer>
+      {value => <LoginPage {...value} {...props} />}
+    </AuthContextConsumer>
+  );
+};
+
+export default ConnectedLoginPage;

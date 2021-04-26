@@ -6,7 +6,7 @@ import Button from '../shared/Button';
 import AuthButton from '../auth/AuthButton';
 import './Header.css';
 
-const Header = ({ className, isLogged, onLogout, ...props }) => {
+const Header = ({ className, ...props }) => {
   return (
     <header className={classNames('header', className)} {...props}>
       <Link to="/">
@@ -25,11 +25,7 @@ const Header = ({ className, isLogged, onLogout, ...props }) => {
         >
           Tweet
         </Button>
-        <AuthButton
-          className="header-button"
-          isLogged={isLogged}
-          onLogout={onLogout}
-        />
+        <AuthButton className="header-button" />
       </nav>
     </header>
   );
