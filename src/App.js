@@ -16,25 +16,29 @@ function App({ isInitiallyLogged }) {
   return (
     <div className="App">
       <Switch>
-        <Route path="/tweet/:tweetId" component={TweetDetailPage} />
-        <PrivateRoute
-          isLogged={isLogged}
-          path="/tweet"
-          component={NewTweetPage}
-        />
+        <Route path="/tweet/:tweetId">
+          {({ match }) => (
+            <TweetDetailPage
+              match={match}
+              isLogged={isLogged}
+              onLogout={handleLogout}
+            />
+          )}
+        </Route>
+        <PrivateRoute isLogged={isLogged} path="/tweet">
+          {() => <NewTweetPage isLogged={isLogged} onLogout={handleLogout} />}
+        </PrivateRoute>
         <Route path="/login">
-          {({ history }) => (
-            <LoginPage onLogin={handleLogin} history={history} />
+          {({ history, location }) => (
+            <LoginPage
+              onLogin={handleLogin}
+              history={history}
+              location={location}
+            />
           )}
         </Route>
         <Route exact path="/">
-          {({ history }) => (
-            <TweetsPage
-              isLogged={isLogged}
-              onLogout={handleLogout}
-              history={history}
-            />
-          )}
+          {() => <TweetsPage isLogged={isLogged} onLogout={handleLogout} />}
         </Route>
         <Route path="/404">
           <div

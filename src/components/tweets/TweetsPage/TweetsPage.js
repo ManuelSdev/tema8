@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import { getLatestTweets } from '../../../api/tweets';
 import scopedStyles from './TweetsPage.module.css';
@@ -10,17 +11,13 @@ import './TweetsPage.css';
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
     <p>Be the first twitter!</p>
-    <Button
-      // as={Link}
-      // to="/tweet"
-      variant="primary"
-    >
+    <Button as={Link} to="/tweet" variant="primary">
       Tweet
     </Button>
   </div>
 );
 
-const TweetsPage = ({ className, history, ...props }) => {
+const TweetsPage = ({ className, ...props }) => {
   const [tweets, setTweets] = React.useState([]);
 
   React.useEffect(() => {
@@ -30,11 +27,7 @@ const TweetsPage = ({ className, history, ...props }) => {
   return (
     <Layout title="What's going on..." {...props}>
       <div className={classnames(scopedStyles.tweetsPage, className)}>
-        {tweets.length ? (
-          <TweetsList tweets={tweets} history={history} />
-        ) : (
-          <EmptyList />
-        )}
+        {tweets.length ? <TweetsList tweets={tweets} /> : <EmptyList />}
       </div>
     </Layout>
   );

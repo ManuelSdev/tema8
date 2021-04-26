@@ -1,5 +1,4 @@
 import React from 'react';
-import './TweetDetailPage.css';
 import Layout from '../../layout/Layout';
 
 import { getTweetDetail } from '../../../api/tweets';
@@ -27,7 +26,7 @@ class TweetDetailPage extends React.Component {
       return <Redirect to="/404" />;
     }
     return (
-      <Layout title="Tweet Detail">
+      <Layout title="Tweet Detail" {...this.props}>
         <div>{JSON.stringify(tweet)}</div>
       </Layout>
     );

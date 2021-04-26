@@ -7,11 +7,15 @@ import Photo from '../../shared/Photo';
 import defaultPhoto from '../../../assets/default_profile.png';
 import './Tweet.css';
 
-const Tweet = ({ content, updatedAt, user, likes, onClick }) => {
-  const handleLike = console.log;
+const Tweet = ({ content, updatedAt, user, likes }) => {
+  const handleLike = ev => {
+    ev.preventDefault();
+    // Manage like/unlike flow
+    console.log(ev);
+  };
 
   return (
-    <article className="tweet bordered" onClick={onClick}>
+    <article className="tweet bordered">
       <div className="left">
         <Photo src={defaultPhoto} className="tweet-photo" />
       </div>
