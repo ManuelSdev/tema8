@@ -4,13 +4,13 @@ import classNames from 'classnames';
 
 import './Textarea.css';
 
-const Textarea = ({ className, ...props }) => {
+const Textarea = React.forwardRef(({ className, ...props }, ref) => {
   return (
     <div className={classNames('textarea', className)}>
-      <textarea {...props} className="textarea-input" />
+      <textarea ref={ref} {...props} className="textarea-input" />
     </div>
   );
-};
+});
 
 Textarea.propTypes = {
   className: T.string,

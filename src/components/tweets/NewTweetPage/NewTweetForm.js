@@ -5,6 +5,11 @@ const MAX_CHARACTERS = 280;
 
 const NewTweetForm = ({ onSubmit }) => {
   const [content, setContent] = React.useState('');
+  const textareaRef = React.useRef(null);
+
+  React.useEffect(() => {
+    textareaRef.current.focus();
+  }, []);
 
   const handleSubmit = ev => {
     ev.preventDefault();
@@ -21,6 +26,7 @@ const NewTweetForm = ({ onSubmit }) => {
         maxLength={MAX_CHARACTERS}
         value={content}
         onChange={handleChange}
+        ref={textareaRef}
       />
       <div className="newTweetPage-footer">
         <span className="newTweetPage-characters">{`${content.length} / ${MAX_CHARACTERS}`}</span>
