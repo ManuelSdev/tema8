@@ -58,6 +58,7 @@ function LoginForm({ onSubmit, isLoading }) {
         value={username}
         // onChange={handleUsernameChange}
         onChange={handleChange}
+        autofocus
       />
       <FormField
         type="password"
