@@ -10,9 +10,15 @@ const TweetDetailPage = ({ match, ...props }) => {
 
   React.useEffect(() => {
     console.log('Start effect', match.params.tweetId);
-    getTweetDetail(match.params.tweetId)
-      .then(tweet => setTweet(tweet))
-      .catch(error => setError(error));
+    const execute = async () => {
+      try {
+        const tweetDetail = await getTweetDetail(match.params.tweetId);
+        setTweet(tweetDetail);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    execute();
 
     return () => {
       console.log('Clean up effect', match.params.tweetId);
