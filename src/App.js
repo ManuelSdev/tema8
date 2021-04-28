@@ -10,7 +10,7 @@ function App({ isInitiallyLogged }) {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
-    console.log(ref.current);
+    // console.log(ref.current);
   }, []);
 
   const handleLogin = () => {
@@ -28,18 +28,18 @@ function App({ isInitiallyLogged }) {
   return (
     <div className="App">
       <AuthContextProvider value={authValue}>
-        <Switch>
-          <Route path="/tweet/:tweetId">
-            {routeProps => <TweetDetailPage ref={ref} {...routeProps} />}
-          </Route>
-          <PrivateRoute path="/tweet">
+        {/* <Switch> */}
+        <Route path="/tweet/:tweetId">
+          {routeProps => <TweetDetailPage {...routeProps} />}
+        </Route>
+        {/* <PrivateRoute path="/tweet">
             <NewTweetPage />
-          </PrivateRoute>
-          <Route path="/login" component={LoginPage} />
-          <Route exact path="/">
-            <TweetsPage />
-          </Route>
-          <Route path="/404">
+          </PrivateRoute> */}
+        {/* <Route path="/login" component={LoginPage} /> */}
+        <Route path="/">
+          <TweetsPage />
+        </Route>
+        {/* <Route path="/404">
             <div
               style={{
                 textAlign: 'center',
@@ -52,8 +52,8 @@ function App({ isInitiallyLogged }) {
           </Route>
           <Route>
             <Redirect to="/404" />
-          </Route>
-        </Switch>
+          </Route> */}
+        {/* </Switch> */}
       </AuthContextProvider>
     </div>
   );
