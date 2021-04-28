@@ -1,10 +1,11 @@
 import React from 'react';
+import useForm from '../../../hooks/useForm';
 import { Button, Textarea } from '../../shared';
 
 const MAX_CHARACTERS = 280;
 
 const NewTweetForm = ({ onSubmit }) => {
-  const [content, setContent] = React.useState('');
+  const [tweet, handleChange] = useForm({ content: '' });
   const textareaRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -13,15 +14,16 @@ const NewTweetForm = ({ onSubmit }) => {
 
   const handleSubmit = ev => {
     ev.preventDefault();
-    onSubmit({ content });
+    onSubmit(tweet);
   };
 
-  const handleChange = ev => setContent(ev.target.value);
+  const { content } = tweet;
 
   return (
     <form onSubmit={handleSubmit}>
       <Textarea
         className="newTweetPage-textarea"
+        name="content"
         placeholder="Hey! What's up!"
         maxLength={MAX_CHARACTERS}
         value={content}

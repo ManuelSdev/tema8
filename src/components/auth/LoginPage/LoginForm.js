@@ -3,11 +3,12 @@ import T from 'prop-types';
 
 import Button from '../../shared/Button';
 import FormField from '../../shared/FormField';
+import useForm from '../../../hooks/useForm';
 
 import './LoginForm.css';
 
 function LoginForm({ onSubmit, isLoading }) {
-  const [credentials, setCredentials] = React.useState({
+  const [credentials, handleChange] = useForm({
     username: '',
     password: '',
   });
@@ -21,21 +22,6 @@ function LoginForm({ onSubmit, isLoading }) {
   //     const newCredentials = { ...credentials, password: event.target.value };
   //     setCredentials(newCredentials);
   //   };
-
-  const handleChange = event => {
-    // const newCredentials = {
-    //   ...credentials,
-    //   [event.target.name]: event.target.value,
-    // };
-    // setCredentials(newCredentials)
-    setCredentials(oldCredentials => {
-      const newCredentials = {
-        ...oldCredentials,
-        [event.target.name]: event.target.value,
-      };
-      return newCredentials;
-    });
-  };
 
   const handleSubmit = event => {
     event.preventDefault();
